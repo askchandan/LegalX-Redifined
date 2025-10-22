@@ -20,7 +20,6 @@
 *.tsbuildinfo
 
 # Prevent private data and indexes from being pushed
-data/
 chroma_store/
 
 # Byte-compiled / optimized / DLL files
@@ -240,3 +239,4 @@ __marimo__/
 
 # csv file
 ipc_sections.csv!data/ipc_sections_cleaned.json
+!data/*.pdf
