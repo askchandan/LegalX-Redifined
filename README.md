@@ -129,42 +129,59 @@ Perfect for law students, legal professionals, and anyone seeking quick legal gu
    git push origin main
    ```
 
-### Backend Deployment
+### Backend Deployment Options
 
-The backend (FastAPI) needs to be deployed separately. Recommended platforms:
+Since Vercel doesn't support Python backends, deploy your FastAPI backend to one of these platforms:
 
-- **Railway** (recommended for Python apps)
-- **Render**
-- **Heroku**
-- **DigitalOcean App Platform**
+#### 🚀 **Railway** (Recommended - Free tier available)
+1. Go to [Railway.app](https://railway.app) and sign up
+2. Create new project → Deploy from GitHub repo
+3. Railway will auto-detect Python and install requirements.txt
+4. Your backend URL will be: `https://your-project-name.up.railway.app`
 
-**Deployment Steps:**
+#### 🐘 **Render** (Good alternative)
+1. Go to [Render.com](https://render.com) and sign up
+2. Create new Web Service → Connect GitHub repo
+3. Set build command: `pip install -r requirements.txt`
+4. Set start command: `uvicorn api_2:app --host 0.0.0.0 --port $PORT`
+5. Your backend URL will be: `https://your-service-name.onrender.com`
 
-1. **Prepare for deployment:**
-
-   ```bash
-   # Install additional dependencies for deployment
-   pip install gunicorn uvicorn[standard]
-   ```
-
-2. **Create deployment files:**
-
-   Create a `Procfile` (for Heroku/Railway):
+#### 🟣 **Heroku** (Classic choice)
+1. Install Heroku CLI: `npm install -g heroku`
+2. Create `Procfile` in root directory:
    ```
    web: uvicorn api_2:app --host 0.0.0.0 --port $PORT
    ```
+3. Deploy: `heroku create` then `git push heroku main`
+4. Your backend URL will be: `https://your-app-name.herokuapp.com`
 
-   Or `render.yaml` (for Render):
-   ```yaml
-   services:
-     - type: web
-       name: legalx-api
-       env: python
-       buildCommand: pip install -r requirements.txt
-       startCommand: uvicorn api_2:app --host 0.0.0.0 --port $PORT
-   ```
+#### 🔧 **DigitalOcean App Platform**
+1. Go to [DigitalOcean](https://digitalocean.com) → App Platform
+2. Connect GitHub repo
+3. Configure as Python app with requirements.txt
+4. Your backend URL will be: `https://your-app-name.ondigitalocean.app`
 
-3. **Deploy the backend first, then update the frontend's `NEXT_PUBLIC_API_URL`**
+#### ⚠️ **Important Notes for Backend Deployment:**
+
+- **Model Files**: Your `all-MiniLM-L6-v2/` folder (150MB) and `chroma_store/` will be included
+- **Memory Requirements**: This app needs ~2GB RAM minimum due to embeddings and ChromaDB
+- **Ollama Configuration**: Set environment variable `OLLAMA_URL` to your Ollama instance:
+  - For Railway/Render: Use a cloud Ollama service or self-hosted instance
+  - For local testing: `OLLAMA_URL=http://localhost:11434`
+- **Build Time**: First deployment may take 10-15 minutes due to large dependencies
+
+#### 🔄 **Quick Start (Railway):**
+1. Sign up at Railway.app
+2. Click "Deploy from GitHub"
+3. Select your `LegalX-Redifined` repo
+4. **Add Environment Variable**: `OLLAMA_URL=https://your-ollama-instance.com`
+5. Railway auto-detects Python and deploys
+6. Get your URL from the dashboard
+
+Then update your Vercel environment variable:
+```
+NEXT_PUBLIC_API_URL=https://your-railway-app.up.railway.app
+```
 
 ## Data Files
 

@@ -43,11 +43,15 @@ class PromptRequest(BaseModel):
     prompt: str
 
 
+import os
+
+# Configuration
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 TEMPERATURE = 0.0
 TOP_P = 0.9
 REPEAT_PENALTY = 1.1
 MAX_TOKENS = 200
-TOP_K = 1# <--- Reduced top_k value for faster similarity search
+TOP_K = 1
 
 # Globals
 vector_store = None
@@ -126,7 +130,7 @@ Answer:
         async with httpx.AsyncClient() as client:
             async with client.stream(
                 "POST",
-                "http://localhost:11434/api/generate",
+                f"{OLLAMA_URL}/api/generate",
                 json={
                     "model": "qwen3:0.6b",
                     "prompt": prompt,
