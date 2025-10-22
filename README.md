@@ -100,6 +100,72 @@ Perfect for law students, legal professionals, and anyone seeking quick legal gu
     The web interface will be available at `http://localhost:3000`
 
 
+## Deployment
+
+### Frontend Deployment (Vercel)
+
+1. **Deploy to Vercel:**
+
+   - Connect your GitHub repository to Vercel
+   - Vercel will automatically detect the Next.js app in the `workspace/` directory
+   - The build settings are configured in `vercel.json`
+
+2. **Environment Variables:**
+
+   Set the following environment variable in your Vercel dashboard:
+
+   ```
+   NEXT_PUBLIC_API_URL=https://your-backend-api-url.com
+   ```
+
+   Replace `https://your-backend-api-url.com` with your deployed backend URL.
+
+3. **Deploy:**
+
+   ```bash
+   # Push to main branch to trigger automatic deployment
+   git add .
+   git commit -m "Ready for Vercel deployment"
+   git push origin main
+   ```
+
+### Backend Deployment
+
+The backend (FastAPI) needs to be deployed separately. Recommended platforms:
+
+- **Railway** (recommended for Python apps)
+- **Render**
+- **Heroku**
+- **DigitalOcean App Platform**
+
+**Deployment Steps:**
+
+1. **Prepare for deployment:**
+
+   ```bash
+   # Install additional dependencies for deployment
+   pip install gunicorn uvicorn[standard]
+   ```
+
+2. **Create deployment files:**
+
+   Create a `Procfile` (for Heroku/Railway):
+   ```
+   web: uvicorn api_2:app --host 0.0.0.0 --port $PORT
+   ```
+
+   Or `render.yaml` (for Render):
+   ```yaml
+   services:
+     - type: web
+       name: legalx-api
+       env: python
+       buildCommand: pip install -r requirements.txt
+       startCommand: uvicorn api_2:app --host 0.0.0.0 --port $PORT
+   ```
+
+3. **Deploy the backend first, then update the frontend's `NEXT_PUBLIC_API_URL`**
+
 ## Data Files
 
 The repository includes sample legal documents for immediate use:
