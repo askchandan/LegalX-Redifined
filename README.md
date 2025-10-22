@@ -1,8 +1,16 @@
-# LegalX - Legal Advisory Management System
+# LegalX - AI-Powered Legal Assistant
 
 ## Description
 
-LegalX is a Python-based Legal Advisory Management System designed to streamline and manage legal advisory processes. This system aims to provide tools for organizing legal information, managing cases, and facilitating communication within a legal team.
+LegalX is an intelligent legal assistant chatbot that leverages advanced AI and vector search technology to provide instant, accurate answers to legal questions. Built with FastAPI backend and Next.js frontend, it processes Indian legal documents to deliver context-aware responses about laws, regulations, and legal procedures.
+
+The system combines:
+- **Natural Language Processing** for understanding legal queries
+- **Vector Embeddings** for semantic search through legal documents
+- **Streaming AI Responses** powered by Ollama/Qwen models
+- **Modern Web Interface** with real-time chat functionality
+
+Perfect for law students, legal professionals, and anyone seeking quick legal guidance.
 
 ## Table of Contents
 
@@ -14,9 +22,13 @@ LegalX is a Python-based Legal Advisory Management System designed to streamline
 
 ## Features
 
-- **API Functionality**: Utilizes `api_2.py` to provide API endpoints for managing legal data.
-- **Vector Store**: Implements a vector store using `built_vector_store.py` for efficient information retrieval.
-- **Dependency Management**: Uses `requirements.txt` to manage project dependencies.
+- **🤖 AI-Powered Chat**: Interactive legal assistant using advanced language models
+- **🔍 Semantic Search**: Vector-based search through legal documents for accurate answers
+- **📚 Legal Knowledge Base**: Processes and indexes Indian legal documents (IPC sections, laws)
+- **⚡ Real-time Streaming**: Live response streaming for better user experience
+- **🎨 Modern UI**: Clean, responsive web interface built with Next.js
+- **🔧 RESTful API**: FastAPI backend for scalable legal query processing
+- **🧠 Knowledge Graphs**: Enhanced understanding through connected legal concepts
 
 ## Installation
 
@@ -41,55 +53,93 @@ LegalX is a Python-based Legal Advisory Management System designed to streamline
     pip install -r requirements.txt
     ```
 
+4.  **Setup the frontend (optional):**
+
+    ```bash
+    cd workspace
+    npm install
+    npm run build
+    cd ..
+    ```
+
 ## Usage
 
 1.  **Data Preparation:**
 
-    Before building the vector store, you need to create a folder named `data` in the root directory of the project. Place all the PDF files that you want to include in the vector store inside this `data` folder.
-
-    ```
-    LegalX/
-    ├── data/
-    │   ├── document1.pdf
-    │   ├── document2.pdf
-    │   └── ...
-    ├── api_2.py
-    ├── built_vector_store.py
-    ├── requirements.txt
-    └── ...
-    ```
+    The project includes sample legal data (`data/ipc_sections_cleaned.json`). For additional documents, create a `data` folder and add PDF files containing legal documents.
 
 2.  **Building the Vector Store:**
-
-    To build the vector store, execute the `built_vector_store.py` script:
 
     ```bash
     python built_vector_store.py
     ```
 
-    This script will process the PDF files in the `data` folder and set up the vector store for efficient information retrieval.
+    This processes legal documents and creates a searchable vector store.
 
-3.  **Running the API:**
-
-    To start the API, execute the `api_2.py` script:
+3.  **Running the Backend API:**
 
     ```bash
     python api_2.py
     ```
 
-    Ensure that all dependencies are installed and the environment is properly configured before running the script.
+    The API will start on `http://localhost:8000`
+
+4.  **Running the Frontend (optional):**
+
+    ```bash
+    cd workspace
+    npm run dev
+    ```
+
+    The web interface will be available at `http://localhost:3000`
 
 
-## Contributing
+## Technologies Used
 
-Contributions are welcome! Here's how you can contribute:
+- **Backend**: Python, FastAPI, ChromaDB, Ollama
+- **Frontend**: Next.js, React, TypeScript, Tailwind CSS
+- **AI/ML**: HuggingFace Transformers, LangChain, Qwen Models
+- **Data Processing**: PyPDF2, Sentence Transformers
 
-1.  Fork the repository.
-2.  Create a new branch for your feature or bug fix.
-3.  Make your changes and commit them with descriptive commit messages.
-4.  Push your changes to your fork.
-5.  Submit a pull request to the main repository.
+## Demo
+
+🚀 **Live Demo**: Ask legal questions and get instant AI-powered responses!
+
+## GitHub About Description
+
+```
+🤖 LegalX - AI-Powered Legal Assistant
+
+An intelligent chatbot that provides instant answers to legal questions using advanced AI and vector search technology. Built with FastAPI backend and Next.js frontend, it processes Indian legal documents to deliver context-aware responses about laws, regulations, and legal procedures.
+
+✨ Features: AI chat, semantic search, legal knowledge base, real-time streaming, modern web UI
+🛠️ Tech: Python, FastAPI, Next.js, React, ChromaDB, Ollama, HuggingFace
+```
 
 ## License
 
-This project does not currently have a license. All rights are reserved by the owner.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2025 Chandan Malakar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
