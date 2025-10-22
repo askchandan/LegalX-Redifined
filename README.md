@@ -100,6 +100,23 @@ Perfect for law students, legal professionals, and anyone seeking quick legal gu
     The web interface will be available at `http://localhost:3000`
 
 
+## Environment Variables
+
+Create a `.env` file in the root directory with your configuration:
+
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Edit .env with your actual values
+```
+
+Required environment variables:
+- `OLLAMA_API_KEY`: Your API key from [ollama.com/settings/keys](https://ollama.com/settings/keys)
+- `OLLAMA_URL`: Usually `https://ollama.com` for Ollama Cloud
+- `RENDER_BACKEND_URL`: Your deployed Render backend URL
+- `NEXT_PUBLIC_API_URL`: Same as RENDER_BACKEND_URL for frontend use
+
 ## Deployment
 
 ### Frontend Deployment (Vercel)
@@ -144,7 +161,12 @@ Since Vercel doesn't support Python backends, deploy your FastAPI backend to one
 2. Create new Web Service → Connect GitHub repo
 3. Set build command: `pip install -r requirements.txt`
 4. Set start command: `uvicorn api_2:app --host 0.0.0.0 --port $PORT`
-5. Your backend URL will be: `https://your-service-name.onrender.com`
+5. **Add Environment Variables:**
+   ```
+   OLLAMA_URL=https://ollama.com
+   OLLAMA_API_KEY=your_ollama_api_key
+   ```
+6. Your backend URL will be: `https://your-service-name.onrender.com`
 
 #### 🟣 **Heroku** (Classic choice)
 1. Install Heroku CLI: `npm install -g heroku`
@@ -161,81 +183,6 @@ Since Vercel doesn't support Python backends, deploy your FastAPI backend to one
 3. Configure as Python app with requirements.txt
 4. Your backend URL will be: `https://your-app-name.ondigitalocean.app`
 
-#### ⚠️ **Important Notes for Backend Deployment:**
-
-- **Model Files**: Your `all-MiniLM-L6-v2/` folder (150MB) and `chroma_store/` will be included
-- **Memory Requirements**: This app needs ~2GB RAM minimum due to embeddings and ChromaDB
-## 🚀 **Best Free Option: Fly.io (Full Stack Deployment)**
-
-**Fly.io** is perfect for your needs - it supports both Python backend + Next.js frontend, doesn't spin down automatically, and has a generous free tier.
-
-### Why Fly.io?
-- ✅ **Free tier available** - Pay only for what you use (per second billing)
-- ✅ **No automatic spin-down** - Apps stay running
-- ✅ **Full stack support** - Python + Next.js together
-- ✅ **Global deployment** - Low latency worldwide
-- ✅ **Docker support** - Easy deployment
-
-### Quick Fly.io Setup:
-
-1. **Install Fly CLI:**
-   ```bash
-   # Windows (PowerShell)
-   iwr https://fly.io/install.ps1 -useb | iex
-   ```
-
-2. **Sign up & Login:**
-   ```bash
-   fly auth signup
-   fly auth login
-   ```
-
-3. **Deploy your app:**
-   ```bash
-   cd your-project-directory
-   fly launch
-   ```
-
-4. **Set environment variables:**
-   ```bash
-   fly secrets set OLLAMA_URL=https://ollama.com
-   fly secrets set OLLAMA_API_KEY=your_api_key
-   ```
-
-5. **Deploy:**
-   ```bash
-   fly deploy
-   ```
-
-### Fly.io Free Tier Limits:
-- **Free credits**: $5/month worth of resources
-- **512MB RAM, 1 shared CPU** (sufficient for your app)
-- **No spin-down** - stays active
-- **Global regions** available
-
-### Alternative: Railway Hobby Plan ($5/month)
-If you prefer Railway's interface:
-- **$5/month** includes $5 usage credits
-- **No spin-down** after credits
-- **Better Python support** than Fly.io
-- **Easy GitHub integration**
-
-Both options work great with Ollama Cloud!
-- **Build Time**: First deployment may take 10-15 minutes due to large dependencies
-
-#### 🔄 **Quick Start (Fly.io + Ollama Cloud - FREE):**
-1. **Install Fly CLI**: `iwr https://fly.io/install.ps1 -useb | iex`
-2. **Sign up**: `fly auth signup` + Ollama Cloud account
-3. **Deploy**: `fly launch` (select your repo)
-4. **Set secrets**:
-   ```
-   fly secrets set OLLAMA_URL=https://ollama.com
-   fly secrets set OLLAMA_API_KEY=your_ollama_key
-   ```
-5. **Deploy**: `fly deploy`
-6. **Frontend**: Deploy `workspace/` folder to Vercel, set `NEXT_PUBLIC_API_URL=https://your-fly-app.fly.dev`
-
-**Cost**: FREE (Fly.io gives $5/month credits, Ollama Cloud has free tier)
 
 ## Data Files
 
