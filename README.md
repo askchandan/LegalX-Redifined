@@ -114,16 +114,6 @@ The repository includes sample legal documents for immediate use:
 
 🚀 **Live Demo**: Ask legal questions and get instant AI-powered responses!
 
-## GitHub About Description
-
-```
-🤖 LegalX - AI-Powered Legal Assistant
-
-An intelligent chatbot that provides instant answers to legal questions using advanced AI and vector search technology. Built with FastAPI backend and Next.js frontend, it processes Indian legal documents to deliver context-aware responses about laws, regulations, and legal procedures.
-
-✨ Features: AI chat, semantic search, legal knowledge base, real-time streaming, modern web UI
-🛠️ Tech: Python, FastAPI, Next.js, React, ChromaDB, Ollama, HuggingFace
-```
 
 ## License
 
