@@ -239,4 +239,4 @@ marimo/_lsp/
 __marimo__/
 
 # csv file
-ipc_sections.csv
+ipc_sections.csv!data/ipc_sections_cleaned.json
