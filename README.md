@@ -64,9 +64,15 @@ Perfect for law students, legal professionals, and anyone seeking quick legal gu
 
 ## Usage
 
-1.  **Data Preparation:**
+1.  **Data Setup:**
 
-    The project includes sample legal data (`data/ipc_sections_cleaned.json`). For additional documents, create a `data` folder and add PDF files containing legal documents.
+    The repository includes sample legal data. Run the setup script to verify everything is ready:
+
+    ```bash
+    python setup_data.py
+    ```
+
+    This will check your data files and provide setup instructions.
 
 2.  **Building the Vector Store:**
 
@@ -94,12 +100,15 @@ Perfect for law students, legal professionals, and anyone seeking quick legal gu
     The web interface will be available at `http://localhost:3000`
 
 
-## Technologies Used
+## Data Files
 
-- **Backend**: Python, FastAPI, ChromaDB, Ollama
-- **Frontend**: Next.js, React, TypeScript, Tailwind CSS
-- **AI/ML**: HuggingFace Transformers, LangChain, Qwen Models
-- **Data Processing**: PyPDF2, Sentence Transformers
+The repository includes sample legal documents for immediate use:
+
+- **`data/ipc_sections_cleaned.json`** - Processed Indian Penal Code sections (77KB)
+- **`data/ipc_sections_formatted.pdf`** - Formatted IPC document (63KB)
+- **`data/Cyber Crimes Offenses & Penalties In India[1].pdf`** - Cyber crime laws (388KB)
+
+**Note**: These files are included for demonstration. For production use, replace with your own legal documents or additional Indian legal texts.
 
 ## Demo
 
