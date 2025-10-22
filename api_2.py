@@ -47,6 +47,7 @@ import os
 
 # Configuration
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
 TEMPERATURE = 0.0
 TOP_P = 0.9
 REPEAT_PENALTY = 1.1
@@ -127,10 +128,15 @@ Answer:
     """)
 
     async def stream_ollama():
+        headers = {}
+        if OLLAMA_API_KEY:
+            headers["Authorization"] = f"Bearer {OLLAMA_API_KEY}"
+        
         async with httpx.AsyncClient() as client:
             async with client.stream(
                 "POST",
                 f"{OLLAMA_URL}/api/generate",
+                headers=headers,
                 json={
                     "model": "qwen3:0.6b",
                     "prompt": prompt,
