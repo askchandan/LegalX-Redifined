@@ -1,4 +1,5 @@
 transformers
+python==3.10.18
 fastapi
 pydantic
 langchain_community
